@@ -7,12 +7,7 @@ class Solution {
                 stack.push(temp);
             }
         }
-        String result="";
-        while (stack.size()>1){
-            result+=stack.pop()+" ";
-        }
-        
-        return result+stack.pop();
-
+      
+        return String.join(" ",stack);
     }
 }
