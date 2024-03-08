@@ -7,7 +7,7 @@ class Solution {
                 stack.push(temp);
             }
         }
-      
+
         return String.join(" ",stack);
     }
 }
