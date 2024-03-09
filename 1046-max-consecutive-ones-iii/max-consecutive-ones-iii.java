@@ -8,7 +8,7 @@ class Solution {
             {
                 zeros++;
             }
-            if (zeros>k)
+            while (zeros>k)
             {
                 if(nums[ptr1]==0)
                 {
