@@ -9,7 +9,7 @@ class Solution {
         Arrays.sort(pairs, (a, b) -> b[1] - a[1]);
         
         // Use a min-heap to maintain the top k elements.
-        PriorityQueue<Integer> topKHeap = new PriorityQueue<>(k, (a, b) -> a - b);
+        PriorityQueue<Integer> topKHeap = new PriorityQueue<>();
         long topKSum = 0;
         for (int i = 0; i < k; ++i) {
             topKSum += pairs[i][0];
