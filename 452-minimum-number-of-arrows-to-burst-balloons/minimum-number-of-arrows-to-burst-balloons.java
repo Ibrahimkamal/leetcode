@@ -1,9 +1,6 @@
 
 import java.util.Collection;class Solution {
     public int findMinArrowShots(int[][] points) {
-        if (points.length == 0) return 0;
-
-        // sort by x_end
         Arrays.sort(points, (o1, o2) -> {
             // We can't simply use the o1[1] - o2[1] trick, as this will cause an 
             // integer overflow for very large or small values.
@@ -14,14 +11,12 @@ import java.util.Collection;class Solution {
         for(int[] pair:points){
             System.out.println(pair[0]+" "+pair[1]);
         }
-        int result=1;
-        int xStart, xEnd, firstEnd = points[0][1];
-        for(int[]p:points){
-            xStart=p[0];
-            xEnd=p[1];
-            if(firstEnd<xStart){
-                result++;
-                firstEnd=xEnd;
+        int result=points.length;
+        for(int i=0;i<points.length-1;i++){
+            int end=points[i][1];
+            while(i<points.length-1 && end>=points[i+1][0]){
+                result--;
+                i++;
             }
         }
         return result;
