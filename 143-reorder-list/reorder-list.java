@@ -34,13 +34,13 @@ class Solution {
         ListNode first = head;
         ListNode second = previous;
         while (second.next != null) {
-            next = first.next; // Store next node of the first part
-            first.next = second; // Connect current node of the first part to the current node of the second part
-            first = next; // Move the first pointer to the next node (stored before)
+            next = first.next; 
+            first.next = second; 
+            first = next;
 
-            next = second.next; // Store next node of the second part
-            second.next = first; // Connect current node of the second part to the next node of the first part (before moving)
-            second = next; // Move the second pointer to the next node (stored before)
+            next = second.next;
+            second.next = first; 
+            second = next;
         }
     }
 }
