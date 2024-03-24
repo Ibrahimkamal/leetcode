@@ -34,13 +34,14 @@ class Solution {
         ListNode first = head;
         ListNode second = previous;
         while (second.next != null) {
-            next = first.next; 
-            first.next = second; 
-            first = next;
+           next=first.next;
+           first.next=second;
+           first=next;
+        
+            next=second.next;
+           second.next=first;
+           second=next;
 
-            next = second.next;
-            second.next = first; 
-            second = next;
         }
     }
 }
