@@ -1,15 +1,28 @@
 class Solution {
+    private void swap(int[]nums,int i,int j){
+        int temp=nums[i];
+        nums[i]=nums[j];
+        nums[j]=temp;
+    }
     public List<Integer> findDuplicates(int[] nums) {
-        Set<Integer> lookup= new HashSet<> ();
-        List<Integer> result= new ArrayList<> ();
+        int n=nums.length;
+        int i=0;
+        while(n>i){
+            int num=nums[i];
+            int correct_index=num-1;
 
-        for(int i=0;i<nums.length;i++){
-            if(lookup.contains(nums[i])){
-                result.add(nums[i]);
+            if(num!=nums[correct_index]){
+                swap(nums,i,correct_index);
             }else{
-                lookup.add(nums[i]);
+                i++;
             }
+        }
+        List<Integer> result=new ArrayList<>();
 
+        for(i=0;i<n;i++){
+            if(nums[i]-1!=i){
+                result.add(nums[i]);
+            }
         }
         return result;
     }
