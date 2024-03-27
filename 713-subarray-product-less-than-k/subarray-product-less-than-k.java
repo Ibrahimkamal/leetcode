@@ -10,7 +10,7 @@ class Solution {
 
         for(left=0,right=0;right<nums.length;right++){
             product*=nums[right];
-            while(product>=k){
+            while(product>=k && left<=right){
                 product/=nums[left];
                 left++;
             }
