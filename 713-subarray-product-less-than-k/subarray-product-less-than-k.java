@@ -1,11 +1,4 @@
 class Solution {
-    public static int factorial(int n) {
-        if (n <= 1) {
-            return 1; // base case
-        } else {
-            return n * factorial(n - 1); // recursive call
-        }
-    }
     public int numSubarrayProductLessThanK(int[] nums, int k) {
         if(k<=1){
             return 0;
