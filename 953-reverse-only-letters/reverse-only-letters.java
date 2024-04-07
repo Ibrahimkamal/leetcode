@@ -25,10 +25,7 @@ class Solution {
                 end--;
             }
         }
-        String result="";
-        for(char c:arr){
-            result+=c;
-        }
-        return result;
+        
+        return new String(arr);
     }
 }
