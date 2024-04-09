@@ -12,4 +12,3 @@ class Solution {
         return result;
     }
 }
-//  24 24 5 24 24 24 24 8
