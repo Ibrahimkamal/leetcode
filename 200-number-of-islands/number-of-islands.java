@@ -1,42 +1,28 @@
 class Solution {
-    private boolean inRange(int i, int j, int m,int n){
-        if(i<m && i>=0 && j<n && j>=0){
-            return true;
-        }
-        return false;
+    private char[][] grid;
+    private void dfs(int i, int j, int m, int n){
+        if(i<0 || i>=m ||j<0 || j>=n) return;
+        if(grid[i][j]=='0') return;
+        grid[i][j]='0';
+        dfs(i+1,j,m,n);
+        dfs(i,j+1,m,n);
+        dfs(i-1,j,m,n);
+        dfs(i,j-1,m,n);
     }
     public int numIslands(char[][] grid) {
+        this.grid=grid;
+        int count=0;
         int m=grid.length;
         int n=grid[0].length;
-        int islands=0;
-        Stack<int[]> stack=new Stack<>();
         for(int i=0;i<m;i++){
             for(int j=0;j<n;j++){
                 if(grid[i][j]=='0')
                     continue;
-                islands++;
-                stack.push(new int[]{i,j});
-                while(!stack.isEmpty()){
-                    int [] point=stack.pop();
-                    int r=point[0];
-                    int c=point[1];
-
-                    grid[r][c]='0';
-                    if(inRange(r+1,c,m,n) && grid[r+1][c]=='1'){
-                        stack.push(new int[]{r+1,c});
-                    }
-                    if(inRange(r-1,c,m,n) && grid[r-1][c]=='1'){
-                        stack.push(new int[]{r-1,c});
-                    }
-                    if(inRange(r,c+1,m,n) && grid[r][c+1]=='1'){
-                        stack.push(new int[]{r,c+1});
-                    }
-                    if(inRange(r,c-1,m,n) && grid[r][c-1]=='1'){
-                        stack.push(new int[]{r,c-1});
-                    }
-                }
+                count++;
+                dfs(i,j,m,n);
             }
         }
-        return islands;
+        return count;
+
     }
 }
