@@ -4,12 +4,11 @@ class Solution {
         HashMap<String,Integer> map=new HashMap<>();
         HashSet<String> bannedSet=new HashSet<>();
         for(String s:banned){
-            bannedSet.add(s.toLowerCase());
+            bannedSet.add(s);
         }
 
         for(String s:arr){
             int count=map.getOrDefault(s,0)+1;
-            s=s.toLowerCase();
             map.put(s,count);
         }
         int max=0;
@@ -20,7 +19,7 @@ class Solution {
             int curr=map.get(word);
             if(max<curr)
             {
-                max=map.get(word);
+                max=curr;
                 mostRepeadWord=word;
             }
         }
