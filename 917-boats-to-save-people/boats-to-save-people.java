@@ -6,13 +6,12 @@ class Solution {
        int sum=0;
        while(left<=right){
         if(people[left]+people[right]<=limit){
-            sum++;
             left++;
             right--;
         }else{
-            sum++;
             right--;
         }
+        sum++;
        }
        return sum;
     }
