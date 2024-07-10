@@ -1,32 +1,18 @@
 class Solution {
-    public int [] shiftLeft(int[]nums,int index)
-    {
-        for(int j=index+1;j<nums.length;j++)
-        {
-            nums[j-1]=nums[j];
-        }
-        return nums;
-    }
     public int removeDuplicates(int[] nums) {
-        int i=1;
-        int length=nums.length;
-        int count=1;
-        while(i<length)
-        {
-            if(nums[i]==nums[i-1])
-            {
-                count++;
-                if(count>2)
-                {
-                    this.shiftLeft(nums, i);
-                    i--;
-                    length--;
-                }
+        int insert_ptr=1;
+        int frequency=1;
+        for (int i=1;i<nums.length;i++){
+            if(nums[i]==nums[i-1]){
+                frequency++;
             }else{
-                count=1;
+                frequency=1;
             }
-            i++;
+            if (frequency<=2){
+                nums[insert_ptr++]=nums[i];
+                // insert_ptr++;
+            }
         }
-        return length;
+        return insert_ptr;
     }
 }
