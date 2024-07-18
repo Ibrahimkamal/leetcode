@@ -10,25 +10,42 @@
  */
 class Solution {
     public ListNode sortList(ListNode head) {
-        ArrayList<ListNode> list=new ArrayList<>();
-        ListNode ptr=head;
-        while(ptr!=null){
-            list.add(ptr);
-            ptr=ptr.next;
-        }
-        Collections.sort(list,new Comparator<ListNode>() {
-            public int compare(ListNode a, ListNode b){
-                return Integer.compare(a.val, b.val);
+        if(head==null || head.next==null) 
+            return head;
+        ListNode mid=getMid(head);
+        ListNode left=sortList(head);
+        ListNode right=sortList(mid);
+        return merge(left, right);
+    }
+    ListNode merge(ListNode list1,ListNode list2){
+        ListNode dummyHead = new ListNode();
+        ListNode tail = dummyHead;
+        while (list1 != null && list2 != null) {
+            if (list1.val < list2.val) {
+                tail.next = list1;
+                list1 = list1.next;
+                tail = tail.next;
+            } else {
+                tail.next = list2;
+                list2 = list2.next;
+                tail = tail.next;
             }
-        });
-        ListNode dummy=new ListNode(0);
-        ptr=dummy;
-        for(int i=0;i<list.size();i++)
-        {
-            ptr.next=list.get(i);
-            ptr=ptr.next;
         }
-        ptr.next=null;
-        return dummy.next;
+        tail.next = (list1 != null) ? list1 : list2;
+        return dummyHead.next;
+    }
+    ListNode getMid(ListNode head){
+        ListNode midPrev=null;
+        while(head!=null && head.next!=null){
+            if(midPrev == null){
+                midPrev=head;
+            }else{
+                midPrev=midPrev.next;
+            }
+            head=head.next.next;
+        }
+        ListNode mid=midPrev.next;
+        midPrev.next=null;
+        return mid;
     }
 }
