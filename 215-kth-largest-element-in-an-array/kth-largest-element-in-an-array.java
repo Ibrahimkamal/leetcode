@@ -13,7 +13,7 @@ class Solution {
             priorityQueue.add(num);
         }
         for (int i=0;i<k-1;i++){
-            priorityQueue.poll();
+            priorityQueue.remove();
         }
         return priorityQueue.peek();
     }
