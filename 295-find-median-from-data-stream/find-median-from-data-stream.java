@@ -1,48 +1,50 @@
 class MedianFinder {
-    ArrayList<Integer> list;
+    PriorityQueue<Integer> max_half;
+    PriorityQueue<Integer> min_half;
     public MedianFinder() {
-        this.list=new ArrayList<>();
-    }
-    private int binarySearch(ArrayList<Integer> list,int val){
-        int low=0;
-        int high=list.size()-1;
-        int mid=0;
-        while(low<=high){
-            mid=low+(high-low)/2;
-            if(list.get(mid)==val){
-                return mid;
+        this.max_half=new PriorityQueue<>();
+        Comparator<Integer> comparator=new Comparator<Integer>() {
+            @Override
+            public int compare(Integer a,Integer b){
+                return b-a;
             }
-            if(list.get(mid)<val){
-                low=mid+1;
-            }else{
-                high=mid-1;
-            }
-        }
-        return low;
+        };
+        this.min_half=new PriorityQueue<>(comparator);
     }
+    
     public void addNum(int num) {
-        if(list.isEmpty()){
-            list.add(num);
-            return;
+        if(!min_half.isEmpty() && min_half.peek()<num){
+            max_half.offer(num);
+            System.out.println(this.max_half.size());
+
+        }else{
+            min_half.offer(num);
+            System.out.println(this.min_half.size());
         }
-        int index=binarySearch(list, num);
-        list.add(index, num);
+        while(Math.abs(min_half.size()-max_half.size())>1){
+            if(min_half.size()>max_half.size()){
+                max_half.offer(min_half.poll());
+            }else{
+                min_half.offer(max_half.poll());
+            }
+        }
+        
     }
-
+    
     public double findMedian() {
-        int size=list.size();
-        if(size%2==1){
-            int val=(int)list.get(size/2);
-            return val;
-        }else{ 
-            float val1=list.get(size/2-1);
-            float val2=list.get(size/2);
-
-            return (val1+val2)/2;
+        System.out.println(this.min_half.size());
+        System.out.println(this.max_half.size());
+        
+        if(this.min_half.size()==this.max_half.size()){
+            return (this.min_half.peek()+this.max_half.peek())/2.0;
+        }else if(this.min_half.size()>this.max_half.size()){
+            return this.min_half.peek();
+        }else{
+            return this.max_half.peek();
         }
     }
 }
-//0 1 2 3 4 5 6 7 8 9
+
 /**
  * Your MedianFinder object will be instantiated and called as such:
  * MedianFinder obj = new MedianFinder();
