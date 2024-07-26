@@ -15,11 +15,9 @@ class MedianFinder {
     public void addNum(int num) {
         if(!min_half.isEmpty() && min_half.peek()<num){
             max_half.offer(num);
-            System.out.println(this.max_half.size());
 
         }else{
             min_half.offer(num);
-            System.out.println(this.min_half.size());
         }
         while(Math.abs(min_half.size()-max_half.size())>1){
             if(min_half.size()>max_half.size()){
@@ -31,10 +29,7 @@ class MedianFinder {
         
     }
     
-    public double findMedian() {
-        System.out.println(this.min_half.size());
-        System.out.println(this.max_half.size());
-        
+    public double findMedian() {      
         if(this.min_half.size()==this.max_half.size()){
             return (this.min_half.peek()+this.max_half.peek())/2.0;
         }else if(this.min_half.size()>this.max_half.size()){
