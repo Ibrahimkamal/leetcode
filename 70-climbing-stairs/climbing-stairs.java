@@ -2,12 +2,12 @@ class Solution {
     int [] cache;
     private int dp(int n) {
         if (n < 2) {
-            return 1; // Base case: 1 way to climb 0 or 1 step
+            return 1;
         }
         if (cache[n] != -1) {
             return cache[n];
         }
-        cache[n] = dp(n - 1) + dp(n - 2); // Number of ways to climb to the nth step
+        cache[n] = dp(n - 1) + dp(n - 2);
         return cache[n];
     }
     public int climbStairs(int n) {
