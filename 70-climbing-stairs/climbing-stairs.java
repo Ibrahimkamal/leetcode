@@ -1,16 +1,20 @@
 class Solution {
+    int [] cache;
+    private int dp(int n) {
+        if (n < 2) {
+            return 1; // Base case: 1 way to climb 0 or 1 step
+        }
+        if (cache[n] != -1) {
+            return cache[n];
+        }
+        cache[n] = dp(n - 1) + dp(n - 2); // Number of ways to climb to the nth step
+        return cache[n];
+    }
     public int climbStairs(int n) {
-        if (n<=2)
-        {
-            return n;
+        cache=new int[n+1];
+        for(int i=0;i<=n;i++){
+            cache[i]=-1;
         }
-        int[]dp=new int[n+1];
-        dp[1]=1;
-        dp[2]=2;
-        for(int i=3;i<=n;i++)
-        {
-            dp[i]=dp[i-1]+dp[i-2];
-        }
-        return dp[n];
+        return dp(n);
     }
 }
