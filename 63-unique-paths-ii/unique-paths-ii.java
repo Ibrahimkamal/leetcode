@@ -7,7 +7,6 @@ class Solution {
     int dp(int i, int j) {
         if (i >= m || j >= n || this.obstacleGrid[i][j] == 1)
             return 0;
-        // Integer[][] test = this.memo;
         if (i == m - 1 && j == n - 1) {
             return 1;
         }
