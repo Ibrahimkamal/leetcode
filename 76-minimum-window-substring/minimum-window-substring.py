@@ -2,8 +2,6 @@ class Solution:
     def minWindow(self, s: str, t: str) -> str:
         if len(t) > len(s):
             return ""
-        # if len(t) == len(s) and s != t:
-        #     return ""
         target = Counter(t)
         window = collections.defaultdict(int)
         need = len(set(t))
