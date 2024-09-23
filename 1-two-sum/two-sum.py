@@ -1,15 +1,17 @@
+from typing import List
+import collections
+
 class Solution:
     def twoSum(self, nums: List[int], target: int) -> List[int]:
-        map=collections.defaultdict(list)
-        for i,num in enumerate(nums):
-            map[num].append(i)
-        for i,num in enumerate(nums):
-            complement=target-num
-            if complement in map:
-                for val in map[complement]:
-                    if val!=i:
-                        return [i,val]
-                
+        # Using a dictionary to keep track of indices
+        num_map = {}
+        
+        for i, num in enumerate(nums):
+            complement = target - num
+            if complement in num_map:
+                return [num_map[complement], i]
+            num_map[num] = i
+        
+        return [-1, -1]
 
-        return [-1,-1]
 
