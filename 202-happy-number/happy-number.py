@@ -1,16 +1,14 @@
 class Solution:
     def isHappy(self, n: int) -> bool:
-        map={}
-        while True:
-            if n==1:
-                    return True
-            temp=n
-            current=n
-            n=0
+        def getNext(temp):
+            result=0
             while temp>0:  
-                n+=pow(temp%10,2)
+                result+=pow(temp%10,2)
                 temp=temp//10
-            if n in map:
-                return False
-            map[current]=n
-        return False
+            return result
+        slow=n
+        fast=getNext(n)
+        while(fast!=1 and slow!=fast):
+            slow=getNext(slow)
+            fast=getNext(getNext(fast))
+        return fast==1
