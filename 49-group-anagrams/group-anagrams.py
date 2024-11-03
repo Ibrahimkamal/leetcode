@@ -1,9 +1,9 @@
+from collections import defaultdict
 class Solution:
-    def sortString(self,s):
-        l=sorted(list(s))
-        return "".join(l)
     def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
-        map=collections.defaultdict(list)
-        for str in strs:
-            map[self.sortString(str)].append(str)
-        return [x for x in map.values()]
+        anagrams_map=defaultdict(list)
+        for word in strs:
+            anagrams_map["".join(sorted(word))].append(word)
+        print (anagrams_map)
+        return [val for val in anagrams_map.values()]
+        
