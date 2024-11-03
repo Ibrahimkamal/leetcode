@@ -11,7 +11,7 @@ class Solution:
 
         # Step 2: Generate all unique 3-sequence patterns per user
         patterns_count = Counter()
-        for user, websites in visits.items():
+        for websites in visits.values():
             unique_patterns = set(combinations(websites, 3))
             for pattern in unique_patterns:
                 patterns_count[pattern] += 1
