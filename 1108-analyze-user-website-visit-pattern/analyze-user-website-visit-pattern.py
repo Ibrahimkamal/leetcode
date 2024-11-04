@@ -1,26 +1,20 @@
-from collections import defaultdict, Counter
-from itertools import combinations
-
-
 class Solution:
-    def mostVisitedPattern(self, username, timestamp, website):
-        # Step 1: Organize visits by user with timestamps sorted
-        visits = defaultdict(list)
+    def mostVisitedPattern(
+        self, username: List[str], timestamp: List[int], website: List[str]
+    ) -> List[str]:
+        user_activity = collections.defaultdict(list)
         for u, t, w in sorted(zip(username, timestamp, website)):
-            visits[u].append(w)
-
-        # Step 2: Generate all unique 3-sequence patterns per user
+            user_activity[u].append(w)
         patterns_count = Counter()
-        for websites in visits.values():
-            unique_patterns = set(combinations(websites, 3))
-            for pattern in unique_patterns:
+        for visits in user_activity.values():
+            patterns = set(combinations(visits, 3))
+            for pattern in patterns:
                 patterns_count[pattern] += 1
-
-        # Step 3: Find the most frequent pattern with lexicographical order in case of a tie
-        max_score = max(patterns_count.values())
-        max_patterns = [
-            pattern for pattern, count in patterns_count.items() if count == max_score
+        max_repetition = max(patterns_count.values())
+        results = []
+        [
+            results.append(r)
+            for r in patterns_count.keys()
+            if patterns_count[r] == max_repetition
         ]
-
-        # Step 4: Select the lexicographically smallest pattern among those with max frequency
-        return list(min(max_patterns))
+        return sorted(results)[0]
