@@ -3,7 +3,7 @@ class Solution:
         insert_index = 1
         index = 1
         repetition = 1
-        result=1
+        result = 1
         while index < len(nums):
             if nums[index] == nums[index - 1]:
                 repetition += 1
@@ -11,8 +11,8 @@ class Solution:
                 repetition = 1
 
             if repetition <= 2:
-                result+=1
+                result += 1
                 nums[insert_index] = nums[index]
                 insert_index += 1
             index += 1
-        return result
+        return insert_index
